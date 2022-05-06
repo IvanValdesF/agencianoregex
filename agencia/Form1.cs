@@ -57,6 +57,9 @@ namespace agencia
 
         private void btnAñadir_Click(object sender, EventArgs e)
         {
+            string strPlacas = "";
+            miAutobus.misVehiculos.ForEach((v) => strPlacas += v.Placas.ToString() + ",");
+            miTractor.misVehiculos.ForEach((v) => strPlacas += v.Placas.ToString() + ",");
             //valida que no haya campos vacios en cada uno de los groupbox
             foreach (Control control in grpVehiculo.Controls)
             {
@@ -66,7 +69,7 @@ namespace agencia
                     return;
                 }
             }
-
+            
             //Crea un objeto con sus datos correspondientes y los añade mediante el metodo de la clase
             if (cbxTipo.Text == "Autobus")
             {
@@ -77,12 +80,11 @@ namespace agencia
                     TipoVehiculo = "Autobus",
                     CantidadKmInicial = (double)nudKilometrajeInicial.Value
                 };
-                string strPlacas = "";
-                
-                miAutobus.misVehiculos.ForEach((v) => strPlacas += v.Placas.ToString()+",");
                 
                 
-                    if (!strPlacas.Contains(txtPlaca.Text))
+                
+
+                if (!strPlacas.Contains(txtPlaca.Text))
                     {
                         miAutobus.AñadirVehiculo(autobus);
                     }
@@ -103,9 +105,9 @@ namespace agencia
                     TipoVehiculo = "Tractor",
                 };
 
-                string strPlacas = "";
+                
 
-                miTractor.misVehiculos.ForEach((v) => strPlacas += v.Placas.ToString() + ",");
+                
 
 
                 if (!strPlacas.Contains(txtPlaca.Text))
