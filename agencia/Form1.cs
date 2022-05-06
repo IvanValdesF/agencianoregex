@@ -77,8 +77,22 @@ namespace agencia
                     TipoVehiculo = "Autobus",
                     CantidadKmInicial = (double)nudKilometrajeInicial.Value
                 };
-
-                miAutobus.AñadirVehiculo(autobus);
+                string strPlacas = "";
+                
+                miAutobus.misVehiculos.ForEach((v) => strPlacas += v.Placas.ToString()+",");
+                
+                
+                    if (!strPlacas.Contains(txtPlaca.Text))
+                    {
+                        miAutobus.AñadirVehiculo(autobus);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Vehiculo ya registrado");
+                    }
+                
+                
+                
             }
             if (cbxTipo.Text == "Tractor")
             {
@@ -89,7 +103,19 @@ namespace agencia
                     TipoVehiculo = "Tractor",
                 };
 
-                miTractor.AñadirVehiculo(tractor);
+                string strPlacas = "";
+
+                miTractor.misVehiculos.ForEach((v) => strPlacas += v.Placas.ToString() + ",");
+
+
+                if (!strPlacas.Contains(txtPlaca.Text))
+                {
+                    miTractor.AñadirVehiculo(tractor);
+                }
+                else
+                {
+                    MessageBox.Show("Vehiculo ya registrado");
+                }
             }
 
             //Actualiza los datos en el datagrid
@@ -108,8 +134,11 @@ namespace agencia
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             int index = 0;
+            string strPlacas = "";
             foreach (Autobus miAutobus in miAutobus.misVehiculos)
             {
+                
+                
                 //Se usa el metodo Contains para buscar en la propiedad Placas de cada objeto
                 if (miAutobus.Placas.ToLower().Contains(txtPlaca.Text.ToLower()))
                 {
@@ -120,7 +149,11 @@ namespace agencia
                     cbxTipo.Text = "Autobus";
                 }
                 index++;
+                strPlacas += miAutobus.Placas.ToLower();
             }
+
+            
+
             foreach (Tractor miTractor in miTractor.misVehiculos)
             {
                 if (miTractor.Placas.ToLower().Contains(txtPlaca.Text.ToLower()))
@@ -130,6 +163,11 @@ namespace agencia
                     cbxTipo.Text = "Tractor";
                 }
                 index++;
+                strPlacas += miTractor.Placas.ToLower();
+            }
+            if (!strPlacas.Contains(txtPlaca.Text.ToLower()))
+            {
+                MessageBox.Show("Vehiculo no encontrado");
             }
         }
 
@@ -215,6 +253,11 @@ namespace agencia
                 txtPlaca.Text = miTractor.misVehiculos[dtgVehiculo.CurrentCell.RowIndex - miTractor.misVehiculos.Count].Placas;
                 cbxTipo.Text = miTractor.misVehiculos[dtgVehiculo.CurrentCell.RowIndex - miTractor.misVehiculos.Count].TipoVehiculo;
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+                
         }
     }
 }

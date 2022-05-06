@@ -35,6 +35,7 @@
             this.txtPlaca = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.grpVehiculo = new System.Windows.Forms.GroupBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.cbxTipo = new System.Windows.Forms.ComboBox();
             this.gbxAutobus = new System.Windows.Forms.GroupBox();
@@ -50,12 +51,11 @@
             this.btnAlquilar = new System.Windows.Forms.Button();
             this.btnDevolver = new System.Windows.Forms.Button();
             this.dtgVehiculo = new System.Windows.Forms.DataGridView();
-            this.btnAñadir = new System.Windows.Forms.Button();
             this.Alquilado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Placa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Vehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KilometrajeActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnBuscar = new System.Windows.Forms.Button();
+            this.btnAñadir = new System.Windows.Forms.Button();
             this.grpVehiculo.SuspendLayout();
             this.gbxAutobus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrecioKilometro)).BeginInit();
@@ -103,6 +103,24 @@
             this.grpVehiculo.TabIndex = 66;
             this.grpVehiculo.TabStop = false;
             this.grpVehiculo.Text = "Vehiculo";
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.BackColor = System.Drawing.Color.White;
+            this.btnBuscar.BackgroundImage = global::agencia.Properties.Resources.Visualpharm_Must_Have_Search;
+            this.btnBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBuscar.Font = new System.Drawing.Font("Century Gothic", 22F);
+            this.btnBuscar.ForeColor = System.Drawing.Color.White;
+            this.btnBuscar.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnBuscar.Location = new System.Drawing.Point(237, 55);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(78, 42);
+            this.btnBuscar.TabIndex = 79;
+            this.btnBuscar.Text = ".";
+            this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // label5
             // 
@@ -394,24 +412,6 @@
             this.dtgVehiculo.TabIndex = 79;
             this.dtgVehiculo.SelectionChanged += new System.EventHandler(this.dtgVehiculo_SelectionChanged);
             // 
-            // btnAñadir
-            // 
-            this.btnAñadir.AutoSize = true;
-            this.btnAñadir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnAñadir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAñadir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAñadir.Font = new System.Drawing.Font("Century Gothic", 18F);
-            this.btnAñadir.ForeColor = System.Drawing.Color.White;
-            this.btnAñadir.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAñadir.Location = new System.Drawing.Point(676, 640);
-            this.btnAñadir.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAñadir.Name = "btnAñadir";
-            this.btnAñadir.Size = new System.Drawing.Size(214, 46);
-            this.btnAñadir.TabIndex = 80;
-            this.btnAñadir.Text = "Añadir vehículo";
-            this.btnAñadir.UseVisualStyleBackColor = false;
-            this.btnAñadir.Click += new System.EventHandler(this.btnAñadir_Click);
-            // 
             // Alquilado
             // 
             this.Alquilado.HeaderText = "Alquilado";
@@ -440,23 +440,23 @@
             this.KilometrajeActual.ReadOnly = true;
             this.KilometrajeActual.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // btnBuscar
+            // btnAñadir
             // 
-            this.btnBuscar.BackColor = System.Drawing.Color.White;
-            this.btnBuscar.BackgroundImage = global::agencia.Properties.Resources.Visualpharm_Must_Have_Search;
-            this.btnBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBuscar.Font = new System.Drawing.Font("Century Gothic", 22F);
-            this.btnBuscar.ForeColor = System.Drawing.Color.White;
-            this.btnBuscar.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBuscar.Location = new System.Drawing.Point(237, 55);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(78, 42);
-            this.btnBuscar.TabIndex = 79;
-            this.btnBuscar.Text = ".";
-            this.btnBuscar.UseVisualStyleBackColor = false;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            this.btnAñadir.AutoSize = true;
+            this.btnAñadir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnAñadir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAñadir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAñadir.Font = new System.Drawing.Font("Century Gothic", 18F);
+            this.btnAñadir.ForeColor = System.Drawing.Color.White;
+            this.btnAñadir.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnAñadir.Location = new System.Drawing.Point(676, 640);
+            this.btnAñadir.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAñadir.Name = "btnAñadir";
+            this.btnAñadir.Size = new System.Drawing.Size(214, 46);
+            this.btnAñadir.TabIndex = 80;
+            this.btnAñadir.Text = "Añadir vehículo";
+            this.btnAñadir.UseVisualStyleBackColor = false;
+            this.btnAñadir.Click += new System.EventHandler(this.btnAñadir_Click);
             // 
             // Form1
             // 
@@ -476,6 +476,7 @@
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Form1";
             this.Text = resources.GetString("$this.Text");
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.grpVehiculo.ResumeLayout(false);
             this.grpVehiculo.PerformLayout();
             this.gbxAutobus.ResumeLayout(false);

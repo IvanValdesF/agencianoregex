@@ -56,6 +56,14 @@ namespace agencia
                     TipoVehiculo = "Autobus",
                     CantidadKmInicial = randomKm.Next(1000)
                 };
+                misVehiculos.ForEach((v) =>
+                {
+                    if (autobus.Placas == v.Placas)
+                    {
+                        MessageBox.Show("Vehiculo registrado");
+                        return;
+                    }
+                });
                 misVehiculos.Add(autobus);
             }
         }
@@ -149,7 +157,7 @@ namespace agencia
 
             FechaDevolucion = DateTime.Now;
 
-            double diasRentado = Math.Round((FechaDevolucion - FechaRenta).TotalDays);
+            double diasRentado = Math.Round((FechaDevolucion - FechaRenta).TotalDays + 1);
             ImporteRenta = PrecioDia * diasRentado;
 
             MessageBox.Show($"TRACTOR\n" +
