@@ -45,7 +45,7 @@ namespace agencia
         //Metodo que crea autobuses de ejemplo
         public override void CrearVehiculos()
         {
-            string[] misPlacas = new string[] { "NUJE7LH4", "ZPVD3U37", "4ZF38MME", "YBST4FXZ", "PXQRQ9NR", "DUGWNEY5" };
+            string[] misPlacas = new string[] { "NUJ2354", "ZPV9283", "AKS9836", "SOD1738", "PLE6752", "DUG4512" };
             Random randomKm = new Random();
             for (int i = 0; i < 6; i++)
             {
@@ -123,7 +123,7 @@ namespace agencia
         //Metodo que crea tractores de ejemplo
         public override void CrearVehiculos()
         {
-            string[] misPlacas = new string[] { "BK62S6PU", "955NXTK2", "KL4KPDSY", "NQGDV7KR", "ZNF7MK2Q", "UU9H37NU" };
+            string[] misPlacas = new string[] { "BKS7845", "NXT1256", "KLG7823", "NQG2648", "ZNF7532", "UUZ1937" };
             for (int i = 0; i < 6; i++)
             {
                 var tractor = new Tractor

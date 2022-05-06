@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace agencia
 {
@@ -57,79 +58,94 @@ namespace agencia
 
         private void btnAñadir_Click(object sender, EventArgs e)
         {
-            string strPlacas = "";
-            miAutobus.misVehiculos.ForEach((v) => strPlacas += v.Placas.ToString() + ",");
-            miTractor.misVehiculos.ForEach((v) => strPlacas += v.Placas.ToString() + ",");
-            //valida que no haya campos vacios en cada uno de los groupbox
-            foreach (Control control in grpVehiculo.Controls)
-            {
-                if (control.Text.Trim() == "" || control.Text == "0.00")
-                {
-                    MessageBox.Show("Todos los campos son obligatorios");
-                    return;
-                }
-            }
             
-            //Crea un objeto con sus datos correspondientes y los añade mediante el metodo de la clase
-            if (cbxTipo.Text == "Autobus")
-            {
-                var autobus = new Autobus
+                string strPlacas = "";
+                miAutobus.misVehiculos.ForEach((v) => strPlacas += v.Placas.ToString() + ",");
+                miTractor.misVehiculos.ForEach((v) => strPlacas += v.Placas.ToString() + ",");
+                //valida que no haya campos vacios en cada uno de los groupbox
+                foreach (Control control in grpVehiculo.Controls)
                 {
-                    Placas = txtPlaca.Text,
-                    Alquilado = false,
-                    TipoVehiculo = "Autobus",
-                    CantidadKmInicial = (double)nudKilometrajeInicial.Value
-                };
-                
-                
-                
+                    if (control.Text.Trim() == "" || control.Text == "0.00")
+                    {
+                        MessageBox.Show("Todos los campos son obligatorios");
+                        return;
+                    }
+                }
 
-                if (!strPlacas.Contains(txtPlaca.Text))
+                //Crea un objeto con sus datos correspondientes y los añade mediante el metodo de la clase
+                if (cbxTipo.Text == "Autobus")
+                {
+                    var autobus = new Autobus
+                    {
+                        Placas = txtPlaca.Text,
+                        Alquilado = false,
+                        TipoVehiculo = "Autobus",
+                        CantidadKmInicial = (double)nudKilometrajeInicial.Value
+                    };
+
+
+
+
+                    if (!strPlacas.Contains(txtPlaca.Text))
+                    {
+                    if (Regex.IsMatch(txtPlaca.Text, "^[A-Z]{3}[0-9]{4}$"))
                     {
                         miAutobus.AñadirVehiculo(autobus);
                     }
                     else
                     {
-                        MessageBox.Show("Vehiculo ya registrado");
+                        MessageBox.Show("El formato de placa introducido no es valido");
                     }
-                
-                
-                
-            }
-            if (cbxTipo.Text == "Tractor")
-            {
-                var tractor = new Tractor
-                {
-                    Placas = txtPlaca.Text,
-                    Alquilado = false,
-                    TipoVehiculo = "Tractor",
-                };
-
-                
-
-                
-
-
-                if (!strPlacas.Contains(txtPlaca.Text))
-                {
-                    miTractor.AñadirVehiculo(tractor);
                 }
-                else
-                {
-                    MessageBox.Show("Vehiculo ya registrado");
-                }
-            }
+                    else
+                    {
+                        MessageBox.Show("Placa de vehiculo actualmente registrada");
+                    }
 
-            //Actualiza los datos en el datagrid
-            dtgVehiculo.Rows.Clear();
-            foreach (Autobus miAutobus in miAutobus.misVehiculos)
-            {
-                dtgVehiculo.Rows.Add(miAutobus.Alquilado, miAutobus.Placas, miAutobus.TipoVehiculo, miAutobus.CantidadKmInicial);
-            }
-            foreach (Tractor miTractor in miTractor.misVehiculos)
-            {
-                dtgVehiculo.Rows.Add(miTractor.Alquilado, miTractor.Placas, miTractor.TipoVehiculo, "-----");
-            }
+
+
+                }
+                if (cbxTipo.Text == "Tractor")
+                {
+                    var tractor = new Tractor
+                    {
+                        Placas = txtPlaca.Text,
+                        Alquilado = false,
+                        TipoVehiculo = "Tractor",
+                    };
+
+
+
+
+
+
+                    if (!strPlacas.Contains(txtPlaca.Text))
+                    {
+                       if (Regex.IsMatch(txtPlaca.Text, "^[A-Z]{3}[0-9]{4}$")){
+                             miTractor.AñadirVehiculo(tractor);
+                        }
+                        else
+                        {
+                        MessageBox.Show("El formato de placa introducido no es valido");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Placa de vehiculo actualmente registrada");
+                    }
+                }
+
+                //Actualiza los datos en el datagrid
+                dtgVehiculo.Rows.Clear();
+                foreach (Autobus miAutobus in miAutobus.misVehiculos)
+                {
+                    dtgVehiculo.Rows.Add(miAutobus.Alquilado, miAutobus.Placas, miAutobus.TipoVehiculo, miAutobus.CantidadKmInicial);
+                }
+                foreach (Tractor miTractor in miTractor.misVehiculos)
+                {
+                    dtgVehiculo.Rows.Add(miTractor.Alquilado, miTractor.Placas, miTractor.TipoVehiculo, "-----");
+                }
+            
         }
 
         //Boton qu mediante un foreach para cada lista busca la placa especificada en ambas lista y selecciona la fila
